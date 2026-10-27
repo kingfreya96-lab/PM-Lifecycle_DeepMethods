@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Backup files
+*.backup
+*.bak
+SKILL.md.backup
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Editor
+.idea/
+.vscode/
+*.swp

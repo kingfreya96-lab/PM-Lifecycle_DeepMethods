@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Lifecycle"
+  short_description: "20-stage product lifecycle with decision gates"
+  default_prompt: "Use $product-lifecycle to run my product through the next lifecycle stage with a go/no-go decision."

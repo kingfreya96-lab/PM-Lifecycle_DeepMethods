@@ -1,0 +1,751 @@
+{
+  "version": "1.0",
+  "description": "PM 方法元索引：方法名→适用场景→哪个库有→核心步骤摘要",
+  "total_methods": 103,
+  "libraries": {
+    "dean": {
+      "full_name": "Dean Peters (Productside)",
+      "total": 77,
+      "referenced": 34
+    },
+    "moh": {
+      "full_name": "Mohit Agw (PM Claude Skills)",
+      "total": 172,
+      "referenced": 41
+    },
+    "phuryn": {
+      "full_name": "Phuryn (PM Skills)",
+      "total": 85,
+      "referenced": 28
+    },
+    "ecc": {
+      "full_name": "ECC (Engineering)",
+      "total": 200,
+      "referenced": 0,
+      "note": "工程库，非 PM 库，未被引用"
+    }
+  },
+  "methods": [
+    {
+      "name": "problem-statement",
+      "name_cn": "问题陈述",
+      "scene": "发现",
+      "summary": "把模糊抱怨写成可证伪的问题陈述",
+      "library": "dean"
+    },
+    {
+      "name": "incoming-request-advisor",
+      "name_cn": "需求分流",
+      "scene": "发现",
+      "summary": "分离字面需求 vs JTBD",
+      "library": "dean"
+    },
+    {
+      "name": "voice-of-customer-miner",
+      "name_cn": "用户声音挖掘",
+      "scene": "发现",
+      "summary": "从公开评论挖掘用户需求",
+      "library": "dean"
+    },
+    {
+      "name": "problem-framing-canvas",
+      "name_cn": "问题框定",
+      "scene": "验证",
+      "summary": "在深入前先框定问题边界",
+      "library": "dean"
+    },
+    {
+      "name": "discovery-interview-prep",
+      "name_cn": "发现访谈准备",
+      "scene": "验证",
+      "summary": "准备发现阶段访谈问题",
+      "library": "dean"
+    },
+    {
+      "name": "discovery-process",
+      "name_cn": "发现流程",
+      "scene": "发现/验证",
+      "summary": "系统化发现流程",
+      "library": "dean"
+    },
+    {
+      "name": "opportunity-solution-tree",
+      "name_cn": "机会方案树",
+      "scene": "策略",
+      "summary": "可视化机会→假设→方案",
+      "library": "dean"
+    },
+    {
+      "name": "jobs-to-be-done",
+      "name_cn": "JTBD",
+      "scene": "发现/验证",
+      "summary": "识别用户要完成的工作",
+      "library": "dean"
+    },
+    {
+      "name": "lean-ux-canvas",
+      "name_cn": "精益 UX 画布",
+      "scene": "策略",
+      "summary": "假设驱动的产品画布",
+      "library": "dean"
+    },
+    {
+      "name": "market-landscape-scan",
+      "name_cn": "市场格局扫描",
+      "scene": "市场",
+      "summary": "扫描市场格局与趋势",
+      "library": "dean"
+    },
+    {
+      "name": "pestel-analysis",
+      "name_cn": "PESTEL 分析",
+      "scene": "市场",
+      "summary": "政治/经济/社会/技术/环境/法律",
+      "library": "dean"
+    },
+    {
+      "name": "pestel-delta-monitor",
+      "name_cn": "PESTEL 变化监测",
+      "scene": "市场",
+      "summary": "监测 PESTEL 因素变化",
+      "library": "dean"
+    },
+    {
+      "name": "porters-five-forces",
+      "name_cn": "波特五力",
+      "scene": "市场",
+      "summary": "行业竞争力分析",
+      "library": "dean"
+    },
+    {
+      "name": "swot-analysis",
+      "name_cn": "SWOT 分析",
+      "scene": "策略",
+      "summary": "优势/劣势/机会/威胁",
+      "library": "dean"
+    },
+    {
+      "name": "tam-sam-som-calculator",
+      "name_cn": "TAM/SAM/SOM",
+      "scene": "市场",
+      "summary": "计算市场大小",
+      "library": "dean"
+    },
+    {
+      "name": "positioning-statement",
+      "name_cn": "定位陈述",
+      "scene": "策略",
+      "summary": "产品定位一句话",
+      "library": "dean"
+    },
+    {
+      "name": "prioritization-advisor",
+      "name_cn": "优先级顾问",
+      "scene": "策略",
+      "summary": "基于价值的优先级排序",
+      "library": "dean"
+    },
+    {
+      "name": "epic-hypothesis",
+      "name_cn": "史诗假设",
+      "scene": "策略",
+      "summary": "大功能=假设，写清要验证什么",
+      "library": "dean"
+    },
+    {
+      "name": "pol-probe",
+      "name_cn": "POL 探针",
+      "scene": "衡量",
+      "summary": "产品健康度探针",
+      "library": "dean"
+    },
+    {
+      "name": "pol-probe-advisor",
+      "name_cn": "POL 探针顾问",
+      "scene": "衡量",
+      "summary": "选择合适的探针",
+      "library": "dean"
+    },
+    {
+      "name": "derisk-measurement-advisor",
+      "name_cn": "去风险衡量顾问",
+      "scene": "衡量",
+      "summary": "DUFV+PESTEL 风险扫描",
+      "library": "dean"
+    },
+    {
+      "name": "saas-economics-efficiency-metrics",
+      "name_cn": "SaaS 效率指标",
+      "scene": "衡量",
+      "summary": "SaaS 核心效率指标",
+      "library": "dean"
+    },
+    {
+      "name": "saas-revenue-growth-metrics",
+      "name_cn": "SaaS 增长指标",
+      "scene": "衡量",
+      "summary": "SaaS 收入增长指标",
+      "library": "dean"
+    },
+    {
+      "name": "user-story-mapping",
+      "name_cn": "用户故事地图",
+      "scene": "交付",
+      "summary": "用户故事可视化排列",
+      "library": "dean"
+    },
+    {
+      "name": "user-story-splitting",
+      "name_cn": "用户故事拆分",
+      "scene": "交付",
+      "summary": "拆分大故事为可交付小故事",
+      "library": "dean"
+    },
+    {
+      "name": "user-story",
+      "name_cn": "用户故事",
+      "scene": "交付",
+      "summary": "写用户故事",
+      "library": "dean"
+    },
+    {
+      "name": "feature-investment-advisor",
+      "name_cn": "功能投资顾问",
+      "scene": "策略",
+      "summary": "基于 ROI 的功能投资决策",
+      "library": "dean"
+    },
+    {
+      "name": "finance-based-pricing-advisor",
+      "name_cn": "财务定价顾问",
+      "scene": "定价",
+      "summary": "基于成本的定价",
+      "library": "dean"
+    },
+    {
+      "name": "product-strategy-session",
+      "name_cn": "产品策略会",
+      "scene": "策略",
+      "summary": "结构化策略讨论",
+      "library": "dean"
+    },
+    {
+      "name": "product-lifecycle-plays",
+      "name_cn": "产品生命周期打法",
+      "scene": "策略",
+      "summary": "不同阶段的打法库",
+      "library": "dean"
+    },
+    {
+      "name": "recommendation-canvas",
+      "name_cn": "推荐画布",
+      "scene": "策略",
+      "summary": "推荐系统设计画布",
+      "library": "dean"
+    },
+    {
+      "name": "eol-checklist",
+      "name_cn": "EOL 检查清单",
+      "scene": "退场",
+      "summary": "产品退场检查清单",
+      "library": "dean"
+    },
+    {
+      "name": "eol-readiness-advisor",
+      "name_cn": "EOL 就绪顾问",
+      "scene": "退场",
+      "summary": "评估退场就绪度",
+      "library": "dean"
+    },
+    {
+      "name": "stakeholder-identification",
+      "name_cn": "干系人识别",
+      "scene": "全程",
+      "summary": "识别项目干系人",
+      "library": "dean"
+    },
+    {
+      "name": "ab-test-planner",
+      "name_cn": "A/B 测试规划",
+      "scene": "验证",
+      "summary": "设计 A/B 测试",
+      "library": "moh"
+    },
+    {
+      "name": "ai-ethics-review",
+      "name_cn": "AI 伦理审查",
+      "scene": "AI",
+      "summary": "AI 产品伦理审查",
+      "library": "moh"
+    },
+    {
+      "name": "ai-product-canvas",
+      "name_cn": "AI 产品画布",
+      "scene": "AI",
+      "summary": "AI 产品设计画布",
+      "library": "moh"
+    },
+    {
+      "name": "capacity-planning",
+      "name_cn": "容量规划",
+      "scene": "交付",
+      "summary": "规划系统容量",
+      "library": "moh"
+    },
+    {
+      "name": "churn-analysis",
+      "name_cn": "流失分析",
+      "scene": "衡量",
+      "summary": "用户流失分析",
+      "library": "moh"
+    },
+    {
+      "name": "retention-analysis",
+      "name_cn": "留存分析",
+      "scene": "衡量",
+      "summary": "用户留存分析",
+      "library": "moh"
+    },
+    {
+      "name": "code-review-checklist",
+      "name_cn": "代码审查清单",
+      "scene": "交付",
+      "summary": "代码审查检查项",
+      "library": "moh"
+    },
+    {
+      "name": "competitive-analysis",
+      "name_cn": "竞品分析",
+      "scene": "市场",
+      "summary": "竞品功能对比",
+      "library": "moh"
+    },
+    {
+      "name": "data-analysis-standard",
+      "name_cn": "数据分析标准",
+      "scene": "衡量",
+      "summary": "数据分析规范",
+      "library": "moh"
+    },
+    {
+      "name": "dependency-audit",
+      "name_cn": "依赖审计",
+      "scene": "交付",
+      "summary": "依赖关系审计",
+      "library": "moh"
+    },
+    {
+      "name": "disaster-recovery-plan",
+      "name_cn": "灾备计划",
+      "scene": "交付",
+      "summary": "灾难恢复计划",
+      "library": "moh"
+    },
+    {
+      "name": "experiment-designer",
+      "name_cn": "实验设计",
+      "scene": "验证",
+      "summary": "设计验证实验",
+      "library": "moh"
+    },
+    {
+      "name": "feature-flag-guide",
+      "name_cn": "功能开关指南",
+      "scene": "交付",
+      "summary": "功能开关最佳实践",
+      "library": "moh"
+    },
+    {
+      "name": "figma-prototype-plan",
+      "name_cn": "Figma 原型计划",
+      "scene": "设计",
+      "summary": "Figma 原型规划",
+      "library": "moh"
+    },
+    {
+      "name": "go-to-market",
+      "name_cn": "GTM",
+      "scene": "发布",
+      "summary": "上市策略",
+      "library": "moh"
+    },
+    {
+      "name": "go-to-market-planner",
+      "name_cn": "GTM 规划",
+      "scene": "发布",
+      "summary": "上市规划",
+      "library": "moh"
+    },
+    {
+      "name": "incident-postmortem",
+      "name_cn": "事故复盘",
+      "scene": "运营",
+      "summary": "事故复盘分析",
+      "library": "moh"
+    },
+    {
+      "name": "launch-readiness",
+      "name_cn": "上线就绪",
+      "scene": "发布",
+      "summary": "上线就绪检查",
+      "library": "moh"
+    },
+    {
+      "name": "load-testing-plan",
+      "name_cn": "负载测试计划",
+      "scene": "交付",
+      "summary": "负载测试规划",
+      "library": "moh"
+    },
+    {
+      "name": "metrics-framework",
+      "name_cn": "指标框架",
+      "scene": "衡量",
+      "summary": "产品指标体系",
+      "library": "moh"
+    },
+    {
+      "name": "monitoring-setup-guide",
+      "name_cn": "监测设置指南",
+      "scene": "运营",
+      "summary": "监测配置指南",
+      "library": "moh"
+    },
+    {
+      "name": "okr-builder",
+      "name_cn": "OKR 构建",
+      "scene": "策略",
+      "summary": "OKR 设定",
+      "library": "moh"
+    },
+    {
+      "name": "performance-budget",
+      "name_cn": "性能预算",
+      "scene": "交付",
+      "summary": "性能预算设定",
+      "library": "moh"
+    },
+    {
+      "name": "pm-weekly-review",
+      "name_cn": "PM 周报",
+      "scene": "运营",
+      "summary": "PM 周报模板",
+      "library": "moh"
+    },
+    {
+      "name": "prd-template",
+      "name_cn": "PRD 模板",
+      "scene": "交付",
+      "summary": "PRD 模板",
+      "library": "moh"
+    },
+    {
+      "name": "product-health-analysis",
+      "name_cn": "产品健康分析",
+      "scene": "衡量",
+      "summary": "产品健康度分析",
+      "library": "moh"
+    },
+    {
+      "name": "product-launch-checklist",
+      "name_cn": "发布检查清单",
+      "scene": "发布",
+      "summary": "发布前检查",
+      "library": "moh"
+    },
+    {
+      "name": "product-positioning-doc",
+      "name_cn": "产品定位文档",
+      "scene": "策略",
+      "summary": "产品定位",
+      "library": "moh"
+    },
+    {
+      "name": "retro-analysis",
+      "name_cn": "复盘分析",
+      "scene": "运营",
+      "summary": "迭代复盘",
+      "library": "moh"
+    },
+    {
+      "name": "rice-impact-matrix",
+      "name_cn": "RICE 影响矩阵",
+      "scene": "优先级",
+      "summary": "RICE 评分",
+      "library": "moh"
+    },
+    {
+      "name": "rice-prioritisation",
+      "name_cn": "RICE 优先级",
+      "scene": "优先级",
+      "summary": "RICE 排序",
+      "library": "moh"
+    },
+    {
+      "name": "risk-register",
+      "name_cn": "风险登记",
+      "scene": "全程",
+      "summary": "风险跟踪",
+      "library": "moh"
+    },
+    {
+      "name": "roadmap-narrative",
+      "name_cn": "路线图叙事",
+      "scene": "策略",
+      "summary": "路线图叙事",
+      "library": "moh"
+    },
+    {
+      "name": "runbook-writer",
+      "name_cn": "运维手册",
+      "scene": "运营",
+      "summary": "运维手册编写",
+      "library": "moh"
+    },
+    {
+      "name": "security-threat-model",
+      "name_cn": "安全威胁模型",
+      "scene": "交付",
+      "summary": "安全威胁建模",
+      "library": "moh"
+    },
+    {
+      "name": "slo-error-budget",
+      "name_cn": "SLO 错误预算",
+      "scene": "运营",
+      "summary": "SLO 与错误预算",
+      "library": "moh"
+    },
+    {
+      "name": "sycophancy-challenger",
+      "name_cn": "应声虫挑战",
+      "scene": "AI",
+      "summary": "挑战 AI 附和倾向",
+      "library": "moh"
+    },
+    {
+      "name": "technical-debt-register",
+      "name_cn": "技术债登记",
+      "scene": "交付",
+      "summary": "技术债跟踪",
+      "library": "moh"
+    },
+    {
+      "name": "technical-spec-template",
+      "name_cn": "技术规格模板",
+      "scene": "交付",
+      "summary": "技术规格",
+      "library": "moh"
+    },
+    {
+      "name": "test-strategy-doc",
+      "name_cn": "测试策略文档",
+      "scene": "交付",
+      "summary": "测试策略",
+      "library": "moh"
+    },
+    {
+      "name": "ux-research-plan",
+      "name_cn": "UX 研究计划",
+      "scene": "验证",
+      "summary": "UX 研究规划",
+      "library": "moh"
+    },
+    {
+      "name": "intended-vs-implemented",
+      "name_cn": "意图 vs 实现",
+      "scene": "AI",
+      "summary": "AI 意图与实现对照",
+      "library": "phuryn"
+    },
+    {
+      "name": "ab-test-analysis",
+      "name_cn": "A/B 测试分析",
+      "scene": "衡量",
+      "summary": "A/B 测试结果分析",
+      "library": "phuryn"
+    },
+    {
+      "name": "cohort-analysis",
+      "name_cn": "队列分析",
+      "scene": "衡量",
+      "summary": "用户队列分析",
+      "library": "phuryn"
+    },
+    {
+      "name": "sql-queries",
+      "name_cn": "SQL 查询",
+      "scene": "衡量",
+      "summary": "常用分析 SQL",
+      "library": "phuryn"
+    },
+    {
+      "name": "create-prd",
+      "name_cn": "创建 PRD",
+      "scene": "交付",
+      "summary": "PRD 创建",
+      "library": "phuryn"
+    },
+    {
+      "name": "job-stories",
+      "name_cn": "Job Stories",
+      "scene": "发现",
+      "summary": "工作故事",
+      "library": "phuryn"
+    },
+    {
+      "name": "release-notes",
+      "name_cn": "发布说明",
+      "scene": "发布",
+      "summary": "发布说明编写",
+      "library": "phuryn"
+    },
+    {
+      "name": "retro",
+      "name_cn": "复盘",
+      "scene": "运营",
+      "summary": "迭代复盘",
+      "library": "phuryn"
+    },
+    {
+      "name": "sprint-plan",
+      "name_cn": "迭代计划",
+      "scene": "交付",
+      "summary": "迭代规划",
+      "library": "phuryn"
+    },
+    {
+      "name": "test-scenarios",
+      "name_cn": "测试场景",
+      "scene": "交付",
+      "summary": "测试场景设计",
+      "library": "phuryn"
+    },
+    {
+      "name": "user-stories",
+      "name_cn": "用户故事",
+      "scene": "交付",
+      "summary": "用户故事编写",
+      "library": "phuryn"
+    },
+    {
+      "name": "beachhead-segment",
+      "name_cn": "滩头细分",
+      "scene": "GTM",
+      "summary": "Beachhead 市场细分",
+      "library": "phuryn"
+    },
+    {
+      "name": "gtm-strategy",
+      "name_cn": "GTM 策略",
+      "scene": "GTM",
+      "summary": "上市策略",
+      "library": "phuryn"
+    },
+    {
+      "name": "ideal-customer-profile",
+      "name_cn": "理想客户画像",
+      "scene": "GTM",
+      "summary": "ICP 定义",
+      "library": "phuryn"
+    },
+    {
+      "name": "competitor-analysis",
+      "name_cn": "竞品分析",
+      "scene": "市场",
+      "summary": "竞品分析",
+      "library": "phuryn"
+    },
+    {
+      "name": "market-sizing",
+      "name_cn": "市场大小",
+      "scene": "市场",
+      "summary": "市场大小估算",
+      "library": "phuryn"
+    },
+    {
+      "name": "sentiment-analysis",
+      "name_cn": "情感分析",
+      "scene": "市场",
+      "summary": "用户情感分析",
+      "library": "phuryn"
+    },
+    {
+      "name": "north-star-metric",
+      "name_cn": "北极星指标",
+      "scene": "衡量",
+      "summary": "北极星指标定义",
+      "library": "phuryn"
+    },
+    {
+      "name": "analyze-feature-requests",
+      "name_cn": "功能需求分析",
+      "scene": "发现",
+      "summary": "功能需求分析",
+      "library": "phuryn"
+    },
+    {
+      "name": "identify-assumptions-new",
+      "name_cn": "假设识别",
+      "scene": "验证",
+      "summary": "识别新项目假设",
+      "library": "phuryn"
+    },
+    {
+      "name": "interview-script",
+      "name_cn": "访谈脚本",
+      "scene": "验证",
+      "summary": "用户访谈脚本",
+      "library": "phuryn"
+    },
+    {
+      "name": "metrics-dashboard",
+      "name_cn": "指标仪表盘",
+      "scene": "衡量",
+      "summary": "指标仪表盘设计",
+      "library": "phuryn"
+    },
+    {
+      "name": "prioritize-assumptions",
+      "name_cn": "假设优先级",
+      "scene": "验证",
+      "summary": "假设排序",
+      "library": "phuryn"
+    },
+    {
+      "name": "prioritize-features",
+      "name_cn": "功能优先级",
+      "scene": "策略",
+      "summary": "功能排序",
+      "library": "phuryn"
+    },
+    {
+      "name": "summarize-interview",
+      "name_cn": "访谈摘要",
+      "scene": "验证",
+      "summary": "访谈结果摘要",
+      "library": "phuryn"
+    },
+    {
+      "name": "business-model",
+      "name_cn": "商业模式",
+      "scene": "策略",
+      "summary": "商业模式画布",
+      "library": "phuryn"
+    },
+    {
+      "name": "pricing-strategy",
+      "name_cn": "定价策略",
+      "scene": "定价",
+      "summary": "定价策略",
+      "library": "phuryn"
+    },
+    {
+      "name": "value-proposition",
+      "name_cn": "价值主张",
+      "scene": "策略",
+      "summary": "价值主张定义",
+      "library": "phuryn"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# ═══════════════════════════════════════════════════════════════
+# DEPRECATED — 已拆分为 3 个微 agent，见 socratic-*.yaml
+# 本文件保留仅供对照，不要再加载。
+# ═══════════════════════════════════════════════════════════════
+#
+# 替代方案（按决策风险分级）：
+#   R1 易逆     → socratic-decompose.yaml  （~950 bytes）
+#   R2 可逆     → 上者 + socratic-steelman.yaml （+~900 bytes）
+#   R3/R4 难逆  → 全部三个 + socratic-cost.yaml  （+~990 bytes）
+#
+# 每个 agent 只做一件事，一次只加载一个。比加载本文件的 2957 bytes
+# 更省 token、响应更快。
+# ═══════════════════════════════════════════════════════════════
+interface:
+  display_name: "Strategist — 苏格拉底式战略官 [已弃用]"
+  short_description: "DEPRECATED — 已拆分为 socratic-decompose / socratic-steelman / socratic-cost 三个微 agent。请按决策可逆性分级调用。"
+  default_prompt: |
+    DEPRECATED.
+    请使用 agents/socratic-decompose.yaml（拆基石）、
+    agents/socratic-steelman.yaml（最强反方）、
+    agents/socratic-cost.yaml（问代价）。
+    按决策可逆性分级调用，不要一次加载全部。

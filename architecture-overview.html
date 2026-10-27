@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM Lifecycle &amp; Deep Methods — 架构总览</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 32px 24px;
+    line-height: 1.6;
+  }
+  .container { max-width: 1180px; margin: 0 auto; }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 32px;
+    background: linear-gradient(135deg, #1e293b 0%, #312e81 100%);
+    border-radius: 16px;
+    border: 1px solid #475569;
+  }
+  header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; color: #f8fafc; }
+  header p { font-size: 15px; color: #94a3b8; }
+
+  .section {
+    background: #1e293b;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    padding: 28px;
+    margin-bottom: 28px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .tag {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: #4f46e5;
+    color: white;
+    font-weight: 500;
+  }
+
+  /* === 是什么：四层架构 === */
+  .arch {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .arch-col { display: flex; flex-direction: column; gap: 16px; }
+  .arch-col.center { grid-column: 2; }
+  .arch-col.bottom { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 8px; }
+
+  .node {
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid;
+    position: relative;
+  }
+  .node .name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .node .desc { font-size: 13px; opacity: 0.85; }
+  .node .size { position: absolute; top: 10px; right: 14px; font-size: 11px; opacity: 0.6; }
+
+  .node.lifecycle { background: #312e81; border-color: #6366f1; }
+  .node.artifacts { background: #064e3b; border-color: #10b981; }
+  .node.meta { background: #78350f; border-color: #f59e0b; }
+  .node.deep { background: #7f1d1d; border-color: #ef4444; }
+
+  .node.agent { background: #1e3a8a; border-color: #3b82f6; }
+
+  .center-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .lifecycle-card {
+    background: #312e81;
+    border: 2px solid #818cf8;
+    border-radius: 14px;
+    padding: 22px 28px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 0 30px rgba(99,102,241,0.15);
+  }
+  .lifecycle-card .badge {
+    display: inline-block;
+    background: #4f46e5;
+    color: white;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .lifecycle-card h3 { font-size: 18px; margin-bottom: 4px; }
+  .lifecycle-card p { font-size: 13px; opacity: 0.8; }
+
+  .agents-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; width: 100%; }
+  .agent-node {
+    background: #1e3a8a;
+    border: 1px solid #3b82f6;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .agent-node .r-tag { font-size: 11px; color: #60a5fa; font-weight: 600; }
+  .agent-node .aname { font-weight: 600; font-size: 14px; margin: 4px 0; }
+  .agent-node .asize { font-size: 11px; opacity: 0.6; }
+
+  .arrows-down { text-align: center; color: #64748b; font-size: 24px; line-height: 1; }
+
+  /* === 为什么用 === */
+  .reasons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .reason {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border-left: 4px solid #4f46e5;
+  }
+  .reason h4 { font-size: 15px; margin-bottom: 6px; color: #c7d2fe; }
+  .reason p { font-size: 13px; color: #94a3b8; }
+
+  /* === 怎么用：流程图 === */
+  .flow { display: flex; flex-direction: column; gap: 0; }
+  .flow-row { display: flex; align-items: stretch; gap: 12px; justify-content: center; }
+  .flow-step {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 14px 18px;
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+  .flow-step .step-num {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4f46e5;
+    color: white;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .flow-step .sname { font-weight: 600; font-size: 14px; margin-bottom: 3px; }
+  .flow-step .sdesc { font-size: 12px; color: #94a3b8; }
+  .flow-step.gate { border-color: #f59e0b; }
+  .flow-step.agent { border-color: #3b82f6; }
+
+  .flow-arrow {
+    text-align: center;
+    color: #475569;
+    font-size: 20px;
+    padding: 4px 0;
+  }
+
+  /* === 决策分级表 === */
+  .risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 13px;
+  }
+  .risk-table th, .risk-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid #334155;
+  }
+  .risk-table th { background: #0f172a; color: #c7d2fe; font-weight: 600; }
+  .risk-table td.r1 { color: #34d399; }
+  .risk-table td.r2 { color: #fbbf24; }
+  .risk-table td.r3 { color: #fb923c; }
+  .risk-table td.r4 { color: #f87171; }
+
+  footer { text-align: center; color: #475569; font-size: 12px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>🧭 PM Lifecycle &amp; Deep Methods</h1>
+    <p>产品全生命周期管理 + 深度方法论 — 四 skill 协同套件</p>
+  </header>
+
+  <!-- ========== 是什么 ========== -->
+  <div class="section">
+    <div class="section-title"><span class="tag">01</span> 是什么 — 四层架构 + 三微 Agent</div>
+
+    <div class="center-wrap">
+      <div class="lifecycle-card">
+        <span class="badge">主入口 · 流程调度引擎</span>
+        <h3>product-lifecycle</h3>
+        <p>230 行启动引导 · 按需加载 references/ · 一个会话只处理一个阶段</p>
+      </div>
+      <div class="arrows-down">▼</div>
+      <div class="arch">
+        <div class="node artifacts">
+          <span class="size">133 行</span>
+          <div class="name">product-artifacts</div>
+          <div class="desc">产物生成器：从阶段产物提取真实内容，生成 PRD / 指标树 / 验证计划 / 试点章程 / 监控方案等</div>
+        </div>
+        <div class="node meta">
+          <span class="size">108 行</span>
+          <div class="name">pm-meta</div>
+          <div class="desc">方法元索引：103 个方法，按场景/关键词搜索，返回 3 行摘要，不加载完整方法</div>
+        </div>
+        <div class="node deep">
+          <span class="size">193 行</span>
+          <div class="name">pm-deep-methods</div>
+          <div class="desc">14 种方法论完整步骤：JTBD / PMF / 定价 / 联合分析 / 蒙特卡洛 / 反证法等</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px;">
+      <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #93c5fd;">决策反问 Agent（按风险分级，按需加载，支持并行）</div>
+      <div class="agents-row">
+        <div class="agent-node">
+          <div class="r-tag">R1 易逆</div>
+          <div class="aname">socratic-decompose</div>
+          <div class="asize">~950 B</div>
+        </div>
+        <div class="agent-node">
+          <div class="r-tag">R2 可逆</div>
+          <div class="aname">+ socratic-steelman</div>
+          <div class="asize">+900 B</div>
+        </div>
+        <div class="agent-node">
+          <div class="r-tag">R3 / R4 难逆</div>
+          <div class="aname">+ socratic-cost</div>
+          <div class="asize">+990 B</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 为什么用 ========== -->
+  <div class="section">
+    <div class="section-title"><span class="tag">02</span> 为什么用 — 核心价值</div>
+    <div class="reasons">
+      <div class="reason">
+        <h4>⚡ 省 Token</h4>
+        <p>主 SKILL.md 仅 230 行，所有参考资料（失败模式、命令表、报告格式、防退化规则）按需加载，不常驻。R1 决策只加载 950B 的 agent。</p>
+      </div>
+      <div class="reason">
+        <h4>🎯 决策稳</h4>
+        <p>苏格拉底反问 + 第一性原理 + 证据分级 (E1-E6) + 四态裁决 (GO/STOP/REVISE/CONDITIONAL)，避免拍脑袋。</p>
+      </div>
+      <div class="reason">
+        <h4>🔍 可追溯</h4>
+        <p>每次决策写入 <code>predictions.jsonl</code>，阶段 15/17/19 强制对账预测，校准判断力。沉没成本不构成继续理由。</p>
+      </div>
+      <div class="reason">
+        <h4>🛡️ 防退化</h4>
+        <p>8 条 AR 硬规则内嵌 SKILL.md（非外部加载），包括「一次一个阶段」「产物≠空模板」「禁止加载弃用 agent」等。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 怎么用 ========== -->
+  <div class="section">
+    <div class="section-title"><span class="tag">03</span> 怎么用 — 单阶段标准流程</div>
+    <div class="flow">
+      <div class="flow-row">
+        <div class="flow-step">
+          <span class="step-num">0</span>
+          <div class="sname">init 工作区</div>
+          <div class="sdesc"><code>python3 scripts/workspace.py init ~/work/&lt;项目&gt;</code></div>
+        </div>
+        <div class="flow-step">
+          <span class="step-num">1</span>
+          <div class="sname">读 INDEX 定位阶段</div>
+          <div class="sdesc">只加载 ~40 行 INDEX.md，不扫 20 个阶段文件</div>
+        </div>
+        <div class="flow-step">
+          <span class="step-num">2</span>
+          <div class="sname">L1 快速判断</div>
+          <div class="sdesc">看标题 + 目标段，≤60s 判断是否跳阶段</div>
+        </div>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-row">
+        <div class="flow-step">
+          <span class="step-num">3</span>
+          <div class="sname">六步推理链</div>
+          <div class="sdesc">本质 → 假设 → 不可改 → 否决项 → 钢人反方 → 机会成本</div>
+        </div>
+        <div class="flow-step">
+          <span class="step-num">4</span>
+          <div class="sname">产出阶段产物</div>
+          <div class="sdesc">调 product-artifacts，写入 <code>stages/NN-*/artifacts/</code></div>
+        </div>
+        <div class="flow-step agent">
+          <span class="step-num">5</span>
+          <div class="sname">苏格拉底反问</div>
+          <div class="sdesc">按 R1-R4 分级调 agent（见下方表格）</div>
+        </div>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-row">
+        <div class="flow-step">
+          <span class="step-num">6</span>
+          <div class="sname">填阶段记录卡</div>
+          <div class="sdesc">关键假设 / 反面证据 / 决策者自问（三必填）</div>
+        </div>
+        <div class="flow-step gate">
+          <span class="step-num">7</span>
+          <div class="sname">L2 门控裁决</div>
+          <div class="sdesc">GO / STOP / REVISE / CONDITIONAL，对齐证据等级</div>
+        </div>
+        <div class="flow-step">
+          <span class="step-num">8</span>
+          <div class="sname">提交裁决 + 写预测</div>
+          <div class="sdesc"><code>workspace.py gate</code> + <code>--confidence --falsifier</code></div>
+        </div>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-row">
+        <div class="flow-step" style="flex: 0 0 100%; border-color: #a78bfa;">
+          <span class="step-num">★</span>
+          <div class="sname">阶段 15 / 17 / 19 — 对账预测</div>
+          <div class="sdesc">从 <code>predictions.jsonl</code> 找未对账记录，用真实结果回填，校准判断力</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px;">
+      <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #93c5fd;">Agent 调用分级表</div>
+      <table class="risk-table">
+        <thead>
+          <tr><th>可逆性</th><th>含义</th><th>调用 Agent</th><th>Token 开销</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="r1">R1 易逆</td><td>可随时回滚，代价低</td><td>socratic-decompose</td><td>~950 B</td></tr>
+          <tr><td class="r2">R2 可逆</td><td>回滚有成本但可控</td><td>decompose + steelman</td><td>~1850 B</td></tr>
+          <tr><td class="r3">R3 难逆</td><td>回滚代价高</td><td>全部三个</td><td>~2840 B</td></tr>
+          <tr><td class="r4">R4 不可逆</td><td>无法回滚</td><td>全部三个 + 额外人工复核</td><td>~2840 B + 人工</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    工作区：ProductManager-Lifecycle&amp;DeepMethods-Skill · 主入口：product-lifecycle/SKILL.md
+  </footer>
+
+</div>
+</body>
+</html>
